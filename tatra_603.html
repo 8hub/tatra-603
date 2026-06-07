@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tatra 603 | Legenda Motoryzacji</title>
+    
+    <!-- Dołączenie czcionek Google dla eleganckiego wyglądu -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS do szybkiego i responsywnego stylowania -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Ikony Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Konfiguracja Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tatra-dark': '#1a1a1a',
+                        'tatra-gold': '#d4af37',
+                        'tatra-light': '#f4f4f5'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Dodatkowe style dla płynnych animacji wejścia */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        /* Styl dla zdjęć w galerii z efektem przybliżenia */
+        .gallery-image {
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        /* Gradient na zdjęcie główne */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(26,26,26,0.3) 0%, rgba(26,26,26,0.9) 100%);
+        }
+    </style>
+</head>
+<body class="bg-tatra-dark text-tatra-light font-sans antialiased overflow-x-hidden">
+
+    <!-- Nawigacja -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="font-serif text-2xl font-bold tracking-wider text-white">TATRA <span class="text-tatra-gold">603</span></div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#historia" class="text-gray-300 hover:text-tatra-gold transition-colors text-sm uppercase tracking-widest font-semibold">Historia</a>
+                <a href="#specyfikacja" class="text-gray-300 hover:text-tatra-gold transition-colors text-sm uppercase tracking-widest font-semibold">Specyfikacja</a>
+                <a href="#galeria" class="text-gray-300 hover:text-tatra-gold transition-colors text-sm uppercase tracking-widest font-semibold">Galeria</a>
+            </div>
+            <!-- Przycisk menu dla urządzeń mobilnych -->
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-white focus:outline-none p-2">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Menu mobilne -->
+        <div id="mobile-menu" class="hidden md:hidden bg-tatra-dark absolute w-full border-b border-gray-800">
+            <a href="#historia" class="block py-4 px-6 text-white hover:bg-gray-800 uppercase tracking-widest text-sm border-t border-gray-800">Historia</a>
+            <a href="#specyfikacja" class="block py-4 px-6 text-white hover:bg-gray-800 uppercase tracking-widest text-sm border-t border-gray-800">Specyfikacja</a>
+            <a href="#galeria" class="block py-4 px-6 text-white hover:bg-gray-800 uppercase tracking-widest text-sm border-t border-gray-800">Galeria</a>
+        </div>
+    </nav>
+
+    <!-- Sekcja Główna (Hero) -->
+    <header class="relative h-screen flex items-center justify-center">
+        <!-- Zastąp poniższy link URL prawdziwym zdjęciem pięknej Tatry 603 -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://placehold.co/1920x1080/1a1a1a/333333?text=Zdjęcie+Główne+Tatra+603" alt="Tatra 603 Front" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+            <span class="text-tatra-gold uppercase tracking-[0.3em] text-sm md:text-base font-semibold block mb-4">Ikona Czechosłowackiej Inżynierii</span>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">Limuzyna o kształcie <br/> kropli wody</h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 font-light max-w-2xl mx-auto">
+                Luksusowy samochód osobowy, który wyprzedzał swoje czasy dzięki niespotykanej aerodynamice i innowacyjnemu rozmieszczeniu napędu.
+            </p>
+            <a href="#historia" class="inline-block border-2 border-tatra-gold text-tatra-gold hover:bg-tatra-gold hover:text-tatra-dark transition-all duration-300 px-8 py-4 uppercase tracking-widest text-sm font-semibold rounded-sm">
+                Poznaj Detale
+            </a>
+        </div>
+        
+        <!-- Animowana strzałka w dół -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+            <a href="#historia" class="text-white opacity-50 hover:opacity-100 transition-opacity p-4">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Sekcja Historia / Wstęp -->
+    <section id="historia" class="py-24 px-4 bg-[#111]">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-16 fade-in-section">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-5xl font-serif text-white mb-6">Innowacja zza <br><span class="text-tatra-gold">Żelaznej Kurtyny</span></h2>
+                    <div class="w-16 h-1 bg-tatra-gold mb-8"></div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Tatra 603, produkowana w latach 1956–1975, była zarezerwowana wyłącznie dla wysokich urzędników państwowych i dygnitarzy w bloku wschodnim. Jej projektanci, mimo politycznych i ekonomicznych ograniczeń, stworzyli pojazd, który konkurował z zachodnimi limuzynami pod względem komfortu i zaawansowania technicznego.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed">
+                        Cechą wyróżniającą był jej futurystyczny, obły kształt karoserii, stworzony z myślą o minimalizacji oporu powietrza. Zastosowanie trzech, a później dwóch reflektorów z przodu umieszczonych w charakterystycznej osłonie nadawało pojazdowi niepowtarzalny wygląd, jednocześnie doświetlając zakręty.
+                    </p>
+                </div>
+                <div class="md:w-1/2 w-full relative">
+                    <!-- Miejsce na zdjęcie boku lub tyłu auta -->
+                    <img src="https://placehold.co/800x600/222222/555555?text=Sylwetka+Boczna+Tatra+603" alt="Tatra 603 Profil" class="w-full h-auto rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" />
+                    <!-- Akcent dekoracyjny -->
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 border-b-4 border-l-4 border-tatra-gold z-[-1]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja Specyfikacja Techniczna -->
+    <section id="specyfikacja" class="py-24 px-4 bg-tatra-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 fade-in-section">
+                <span class="text-tatra-gold uppercase tracking-[0.2em] text-sm font-semibold">Inżynieria</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mt-4">Specyfikacja Techniczna</h2>
+                <div class="w-24 h-1 bg-tatra-gold mx-auto mt-6"></div>
+            </div>
+
+            <!-- Karty Specyfikacji -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Silnik -->
+                <div class="bg-[#181818] p-8 border border-gray-800 rounded-xl hover:border-tatra-gold transition-colors duration-300 fade-in-section">
+                    <div class="text-tatra-gold text-4xl mb-6"><i class="fas fa-cogs"></i></div>
+                    <h3 class="text-2xl font-serif text-white mb-4">Jednostka Napędowa</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        Sercem pojazdu jest <strong>2.5-litrowy silnik ośmiocylindrowy (V8)</strong>. Został on umieszczony z tyłu pojazdu. Wyjątkowym rozwiązaniem inżynieryjnym jest brak tradycyjnej chłodnicy z płynem cieczowym. Zamiast tego, <strong>silnik jest chłodzony powietrzem</strong>, które zasysane jest przez charakterystyczne wloty z tyłu karoserii przy użyciu potężnych wentylatorów. Pozwoliło to pozbyć się dużej wagi z przodu auta i nadać mu niezwykle aerodynamiczny kształt "bez grilla".
+                    </p>
+                </div>
+
+                <!-- Zawieszenie i Komfort -->
+                <div class="bg-[#181818] p-8 border border-gray-800 rounded-xl hover:border-tatra-gold transition-colors duration-300 fade-in-section" style="transition-delay: 100ms;">
+                    <div class="text-tatra-gold text-4xl mb-6"><i class="fas fa-car-side"></i></div>
+                    <h3 class="text-2xl font-serif text-white mb-4">Podwozie i Komfort</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        Samochód wyposażono w <strong>w pełni niezależne zawieszenie</strong>. Oznacza to, że każde koło jest połączone z nadwoziem osobno (np. za pomocą wahaczy i sprężyn), a nie sztywną osią łączącą prawą i lewą stronę. Dzięki temu uderzenie jednego koła w nierówność na drodze nie wpływa na pozycję drugiego koła na tej samej osi. Gwarantowało to wyjątkowo gładką, "płynącą" jazdę i doskonałe tłumienie drgań, co było priorytetem dla wygody przewożonych dygnitarzy.
+                    </p>
+                </div>
+
+                <!-- Osiągi -->
+                <div class="bg-[#181818] p-8 border border-gray-800 rounded-xl hover:border-tatra-gold transition-colors duration-300 fade-in-section" style="transition-delay: 200ms;">
+                    <div class="text-tatra-gold text-4xl mb-6"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3 class="text-2xl font-serif text-white mb-4">Osiągi i Aerodynamika</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        Moc około 105 koni mechanicznych (w zależności od wersji) w połączeniu z masą blisko 1500 kg może wydawać się dziś niewielka, jednak dzięki fenomenalnej <strong>aerodynamice nadwozia (współczynnik oporu powietrza Cx wynoszący zaledwie 0,36)</strong>, Tatra 603 mogła rozwijać prędkość maksymalną około <strong>160 km/h</strong>. Obły kształt sprawiał, że auto przecinało powietrze gładko, co znacząco zmniejszało hałas wewnątrz kabiny podczas szybkiej jazdy.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Tabela szybkich danych -->
+            <div class="mt-16 bg-[#181818] rounded-xl border border-gray-800 overflow-hidden fade-in-section">
+                <div class="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-800">
+                    <div class="p-6 text-center">
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Pojemność Silnika</p>
+                        <p class="text-2xl font-serif text-white">2472 cm³</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Układ Biegów</p>
+                        <p class="text-xl font-serif text-white mt-1">4-biegowy manual</p>
+                        <p class="text-xs text-gray-500 mt-1">(dźwignia przy kierownicy)</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Wymiary (Dł x Szer x Wys)</p>
+                        <p class="text-xl font-serif text-white mt-1">5065 x 1910 x 1530 mm</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Rozstaw osi</p>
+                        <p class="text-2xl font-serif text-white">2750 mm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja Galeria Zdjęć -->
+    <section id="galeria" class="py-24 px-4 bg-[#111]">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-12 fade-in-section">
+                <div>
+                    <span class="text-tatra-gold uppercase tracking-[0.2em] text-sm font-semibold">Detale</span>
+                    <h2 class="text-4xl font-serif text-white mt-2">Galeria Pojazdu</h2>
+                </div>
+                <div class="hidden md:block">
+                    <p class="text-gray-400 text-sm italic">Dotknij zdjęcia, aby zobaczyć powiększenie</p>
+                </div>
+            </div>
+
+            <!-- Siatka zdjęć -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                
+                <!-- Zastąp obrazki własnymi linkami do zdjęć konkretnego pojazdu -->
+                <div class="gallery-item relative overflow-hidden rounded-lg aspect-[4/3] bg-gray-800 cursor-pointer group fade-in-section" onclick="openModal('https://placehold.co/1200x900/222222/777777?text=Przód+-+Trzy+Reflektory')">
+                    <img src="https://placehold.co/800x600/222222/777777?text=Przód+-+Trzy+Reflektory" alt="Tatra 603 Przód" class="gallery-image w-full h-full object-cover" loading="lazy">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+                <div class="gallery-item relative overflow-hidden rounded-lg aspect-[4/3] bg-gray-800 cursor-pointer group fade-in-section" style="transition-delay: 100ms;" onclick="openModal('https://placehold.co/1200x900/222222/777777?text=Wnętrze+i+Deska+Rozdzielcza')">
+                    <img src="https://placehold.co/800x600/222222/777777?text=Wnętrze+i+Deska+Rozdzielcza" alt="Wnętrze Tatra" class="gallery-image w-full h-full object-cover" loading="lazy">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+                <div class="gallery-item relative overflow-hidden rounded-lg aspect-[4/3] bg-gray-800 cursor-pointer group fade-in-section" style="transition-delay: 200ms;" onclick="openModal('https://placehold.co/1200x900/222222/777777?text=Silnik+V8+z+Tyłu')">
+                    <img src="https://placehold.co/800x600/222222/777777?text=Silnik+V8+z+Tyłu" alt="Silnik Tatra" class="gallery-image w-full h-full object-cover" loading="lazy">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item relative overflow-hidden rounded-lg aspect-[4/3] bg-gray-800 cursor-pointer group fade-in-section" onclick="openModal('https://placehold.co/1200x900/222222/777777?text=Wloty+Powietrza')">
+                    <img src="https://placehold.co/800x600/222222/777777?text=Wloty+Powietrza" alt="Wloty powietrza" class="gallery-image w-full h-full object-cover" loading="lazy">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+                <div class="gallery-item relative overflow-hidden rounded-lg aspect-[4/3] bg-gray-800 cursor-pointer group fade-in-section" style="transition-delay: 100ms;" onclick="openModal('https://placehold.co/1200x900/222222/777777?text=Tył+Pojazdu')">
+                    <img src="https://placehold.co/800x600/222222/777777?text=Tył+Pojazdu" alt="Tył pojazdu" class="gallery-image w-full h-full object-cover" loading="lazy">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+                <div class="gallery-item relative overflow-hidden rounded-lg aspect-[4/3] bg-gray-800 cursor-pointer group fade-in-section" style="transition-delay: 200ms;" onclick="openModal('https://placehold.co/1200x900/222222/777777?text=Emblemat+Tatra')">
+                    <img src="https://placehold.co/800x600/222222/777777?text=Emblemat+Tatra" alt="Detale - Emblemat" class="gallery-image w-full h-full object-cover" loading="lazy">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal (Pełnoekranowe zdjęcie) -->
+    <div id="imageModal" class="fixed inset-0 z-[100] hidden bg-black bg-opacity-95 flex justify-center items-center backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <button onclick="closeModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-tatra-gold focus:outline-none transition-colors z-[101]">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="modalImage" src="" alt="Powiększenie" class="max-w-[95vw] max-h-[90vh] object-contain rounded shadow-2xl scale-95 transition-transform duration-300">
+    </div>
+
+    <!-- Stopka -->
+    <footer class="bg-black py-10 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="font-serif text-xl font-bold tracking-widest text-white mb-4">TATRA <span class="text-tatra-gold">603</span></div>
+            <p class="text-gray-600 text-sm">
+                Informacje przygotowane na potrzeby ekspozycji zabytku. Zeskanuj ponownie kod QR w przyszłości, aby sprawdzić nowości.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Skrypty JS odpowiedzialne za dynamikę i interaktywność -->
+    <script>
+        // 1. Zmiana stylu nawigacji po przewinięciu strony
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-tatra-dark', 'shadow-lg', 'py-3');
+                navbar.classList.remove('bg-transparent', 'py-4');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-4');
+                navbar.classList.remove('bg-tatra-dark', 'shadow-lg', 'py-3');
+            }
+        });
+
+        // 2. Obsługa menu mobilnego
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Zamknięcie menu mobilnego po kliknięciu w link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 3. Efekty pojawiania się elementów podczas przewijania (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Animuj tylko raz
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // 4. Obsługa modala galerii (Lightbox)
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        function openModal(imageSrc) {
+            modalImg.src = imageSrc;
+            modal.classList.remove('hidden');
+            // Delikatne opóźnienie dla płynnej animacji pojawiania się
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalImg.classList.remove('scale-95');
+                modalImg.classList.add('scale-100');
+            }, 10);
+            
+            // Zablokowanie scrollowania strony
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalImg.classList.remove('scale-100');
+            modalImg.classList.add('scale-95');
+            
+            // Usunięcie po zakończeniu animacji
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modalImg.src = '';
+                // Odblokowanie scrollowania
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Zamknięcie modala po kliknięciu w tło (poza zdjęciem)
+        modal.addEventListener('click', function(e) {
+            if(e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Zamknięcie modala przyciskiem ESC na klawiaturze
+        document.addEventListener('keydown', function(e) {
+            if(e.key === "Escape" && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
